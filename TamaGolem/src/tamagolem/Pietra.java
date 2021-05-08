@@ -14,5 +14,6 @@ public class Pietra {
 	public void calcolaDanni() {
 		
 	}
+	
 
 }

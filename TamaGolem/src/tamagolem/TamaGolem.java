@@ -1,5 +1,5 @@
 package tamagolem;
-import java.util.ArrayList;
+
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -8,14 +8,20 @@ public class TamaGolem {
 	private static final int HP_MAX = 100;
 	
 	int health_points;
+	int identificativo;
 	Queue<Pietra> pietre = new LinkedList<Pietra>();
 	
-	public void setTamaGolem(ArrayList<Pietra> _pietre) {
+	public void listaElementi() {
+		
+	}
+	
+	public void setTamaGolem(Pietra[]_pietre, int pos_tg) {
 		setPietre(_pietre);
+		this.identificativo = pos_tg;
 		health_points = HP_MAX;
 	}
 	
-	public void setPietre(ArrayList<Pietra> _pietre) {
+	public void setPietre(Pietra[]_pietre) {
 		for(Pietra pietra: _pietre ) {
 			this.pietre.add(pietra);
 		}
@@ -40,8 +46,9 @@ public class TamaGolem {
 		pietre.add(pietra);
 	}
 	
-
-	
+	public int getIdentificativo() {
+		return this.identificativo;
+	}
 	
 
 }
