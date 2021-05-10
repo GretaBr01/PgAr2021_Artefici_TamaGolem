@@ -1,5 +1,6 @@
 package tamagolem;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -7,22 +8,23 @@ public class TamaGolem {
 	
 	private static final int HP_MAX = 100;
 	
-	int health_points;
-	int identificativo;
-	Queue<Pietra> pietre = new LinkedList<Pietra>();
+	private int health_points;
+	private ArrayList<Pietra> pietre = new ArrayList<Pietra>();
+	private Queue<Pietra> caricatore = new LinkedList<Pietra>();
+	//private int numero_pietre_disponibili;
 	
 	public void listaElementi() {
 		
 	}
 	
-	public void setTamaGolem(Pietra[]_pietre, int pos_tg) {
+	public void setTamaGolem(Pietra[]_pietre) {
 		setPietre(_pietre);
-		this.identificativo = pos_tg;
 		health_points = HP_MAX;
 	}
 	
 	public void setPietre(Pietra[]_pietre) {
 		for(Pietra pietra: _pietre ) {
+			this.caricatore.add(pietra);
 			this.pietre.add(pietra);
 		}
 	}
@@ -33,22 +35,30 @@ public class TamaGolem {
 	 */
 	public Pietra trowPietra() {
 		 Pietra pietra  = getPietra();
-		 pietre.poll();
+		 caricatore.poll();
 		 ricaricaPietra(pietra);
 		 return pietra;
 	}
 	
 	public Pietra getPietra() {
-		return pietre.peek();
+		return caricatore.peek();
 	}
 	
 	public void ricaricaPietra(Pietra pietra) {
-		pietre.add(pietra);
-	}
-	
-	public int getIdentificativo() {
-		return this.identificativo;
+		caricatore.add(pietra);
 	}
 	
 
+	public void infliggiDanno(int danno) {
+		this.health_points = this.health_points - danno;
+	}
+	
+	public int getHealthPoints() {
+		return health_points;
+	}
+
+
+	
+	
+	
 }

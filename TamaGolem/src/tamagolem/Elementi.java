@@ -10,20 +10,33 @@ public enum Elementi {
 	CLAVE (5),
 	CRISTIANESIMO(6);
 
-	int valore;
+	private int valore;
 	
 	Elementi ( int val ){
 		this.valore = val;
 	}
 	
+	/**
+	 * @return	valore corrispondente all' elemento Enum Elementi
+	 */
 	public int getValore() {
 		return valore;
 	}
 	
+	/**
+	 * serve per trovare il nome dell'elemento Enum Elementi che occupa l'indice dato come argomento
+	 * @param id	indice dell'elemento Enum Elementi
+	 * @return	 elemento Enum Elementi presente all'indice dato
+	 */
 	public static Elementi getById(int id) {
 		return Elementi.values()[id];
 	}
 	
+	/**
+	 * verifica corrispondenza del carattere all'interno della classe Enum Elementi
+	 * @param valore
+	 * @return true se il carattere passato come argomento è stato trovato nella classe Enum Elementi
+	 */
 	public static boolean isPresente(int valore) {
 		Elementi nodes[] = values();
 		
@@ -35,7 +48,12 @@ public enum Elementi {
 		return false;
 	}
 	
-	public static Elementi getNomeDaValore(int valore) {
+	/**
+	 * ricerca dell'elemento Enum Elementi il cui valore corrisponde a quello passato come argomento
+	 * @param valore
+	 * @return oggetto Enum Elementi
+	 */
+	public static Elementi getElementoDaValore(int valore) {
 		Elementi elemento = null;
 		Elementi nodes[] = values();
 	
@@ -47,17 +65,35 @@ public enum Elementi {
 		return elemento;
 	}
 	
+	/**
+	 * @return numero elementi presenti nella classe Enum Elementi
+	 */
 	public static int getNumElementi() {
 		return Elementi.values().length;
 	}
 	
-	public static String[] getNomeElementi() {
+	/**
+	 * @return nomi degli elementi presenti nella classe Enum Elementi
+	 */
+	public static String[] getNomeElementi(int indice_elementi) {
 	String[] nome_elementi = new String[getNumElementi()];
-		for(int i = 0; i <  getNumElementi(); i++) {
-			nome_elementi[i] = getNomeDaValore(i+1).name();
+		for(int i = 0; i <  indice_elementi; i++) {
+			nome_elementi[i] = getElementoDaValore(i+1).name();
 		}
 		return nome_elementi;
 	}
+	
+	/**
+	 * @return vettore contenente gli elementi della classe Enum Elementi
+	 */
+	public static Elementi[] getElementi(int numero_elementi_partita) {
+		Elementi nodes[]= new Elementi[numero_elementi_partita];
+		for(int i=0; i<numero_elementi_partita; i++) {
+			nodes[i]=getById(i);
+		}
+		return nodes;
+	}
+	
 	
 	
 }
