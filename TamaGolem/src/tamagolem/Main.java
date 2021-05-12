@@ -10,8 +10,15 @@ public class Main {
 			
 			if(partita1.setDifficolta()) {
 				
+				partita1.setElementi_partita();
 				partita1.setEquilibrio();
+				
 				partita1.creaGiocatori();
+				partita1.calcolaVariabili();
+				partita1.definisciScorta();			
+				
+				
+				
 				
 				partita1.avviaPartita();
 				

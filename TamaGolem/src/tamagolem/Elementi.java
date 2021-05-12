@@ -1,6 +1,8 @@
 package tamagolem;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 public enum Elementi {
 	FUOCO (1),
@@ -8,7 +10,11 @@ public enum Elementi {
 	MERDA (3),
 	ALESSANDROCONTI (4),
 	CLAVE (5),
-	CRISTIANESIMO(6);
+	CRISTIANESIMO(6),
+	ARIA(7),
+	TERRA(8),
+	LEGNO(9),
+	FULMINI(10);
 
 	private int valore;
 	
@@ -75,10 +81,10 @@ public enum Elementi {
 	/**
 	 * @return nomi degli elementi presenti nella classe Enum Elementi
 	 */
-	public static String[] getNomeElementi(int indice_elementi) {
-	String[] nome_elementi = new String[getNumElementi()];
-		for(int i = 0; i <  indice_elementi; i++) {
-			nome_elementi[i] = getElementoDaValore(i+1).name();
+	public static String[] getNomeElementi(Elementi ... elementi_partita) {
+	String[] nome_elementi = new String[elementi_partita.length];
+		for(int i = 0; i <  elementi_partita.length; i++) {
+			nome_elementi[i] = elementi_partita[i].name();
 		}
 		return nome_elementi;
 	}
@@ -94,6 +100,26 @@ public enum Elementi {
 		return nodes;
 	}
 	
-	
+	public static Elementi[] estraiElementi(int numero_elementi_partita) {
+		//Set<Elementi> insieme= new HashSet<Elementi>();
+		Elementi nodes[]= new Elementi[numero_elementi_partita];
+		int valore_elemento;
+		boolean trovato;
+		int i=0;
+		while(i<numero_elementi_partita){
+			trovato=false;
+			valore_elemento=NumeriCasuali.estraiIntero(1, numero_elementi_partita);
+			for(int j=0; j<i; j++) {
+				if(nodes[j].getValore()==valore_elemento) {
+					trovato=true;
+				}
+			}
+			if(!trovato) {
+				nodes[i]=getElementoDaValore(valore_elemento);
+				i++;
+			}
+		}
+		return nodes;
+	}
 	
 }

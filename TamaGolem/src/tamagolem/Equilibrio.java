@@ -12,8 +12,8 @@ public class Equilibrio {
 	 * costruttore dell'Equilibrio settando gli elementi in gioco
 	 * @param numero_elementi_partita
 	 */
-	public Equilibrio(int numero_elementi_partita) {
-		nodi= Elementi.getElementi(numero_elementi_partita);
+	public Equilibrio(Elementi ... elementi_partita) {
+		nodi= elementi_partita;
 		matrice_grafo= new int[nodi.length][nodi.length];
 	}
 

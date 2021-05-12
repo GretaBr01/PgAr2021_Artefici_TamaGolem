@@ -9,7 +9,6 @@ public class TamaGolem {
 	private static final int HP_MAX = 100;
 	
 	private int health_points;
-	private ArrayList<Pietra> pietre = new ArrayList<Pietra>();
 	private Queue<Pietra> caricatore = new LinkedList<Pietra>();
 	//private int numero_pietre_disponibili;
 	
@@ -25,7 +24,6 @@ public class TamaGolem {
 	public void setPietre(Pietra[]_pietre) {
 		for(Pietra pietra: _pietre ) {
 			this.caricatore.add(pietra);
-			this.pietre.add(pietra);
 		}
 	}
 	
@@ -57,7 +55,35 @@ public class TamaGolem {
 		return health_points;
 	}
 
+	public boolean isSconfitto() {
+		if(this.health_points<=0)
+			return true;
+		else
+			return false;
+	}
 
+	/**
+	 * override metodo equals
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		TamaGolem other = (TamaGolem) obj;
+		if (caricatore == null) {
+			if (other.caricatore != null)
+				return false;
+		} else if (!caricatore.equals(other.caricatore))
+			return false;
+		if (health_points != other.health_points)
+			return false;
+
+		return true;
+	}
 	
 	
 	

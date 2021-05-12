@@ -38,9 +38,12 @@ public class Giocatore {
 	public void evocazioneTamaGolem (Pietra[]_pietre) {
 			tamagolem = new TamaGolem();
 		    tamagolem.setTamaGolem(_pietre);
-			this.numero_tamagolem_giocatore --;
+			
 	}
 	
+	public void morteTamagolem() {
+		this.numero_tamagolem_giocatore --;
+	}
 	
 	/**
 	 * dato identificativo del TamaGolem restituisce il corrispondente TamaGolem
@@ -49,6 +52,30 @@ public class Giocatore {
 	 */
 	public TamaGolem getTamaGolem() {
 		return this.tamagolem;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Giocatore other = (Giocatore) obj;
+		if (nome_giocatore == null) {
+			if (other.nome_giocatore != null)
+				return false;
+		} else if (!nome_giocatore.equals(other.nome_giocatore))
+			return false;
+		if (numero_tamagolem_giocatore != other.numero_tamagolem_giocatore)
+			return false;
+		if (tamagolem == null) {
+			if (other.tamagolem != null)
+				return false;
+		} else if (!tamagolem.equals(other.tamagolem))
+			return false;
+		return true;
 	}
 
 }

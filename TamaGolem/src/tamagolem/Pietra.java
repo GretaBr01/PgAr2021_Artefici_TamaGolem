@@ -11,9 +11,20 @@ public class Pietra {
 		this.element = element;
 	}
 	
-	public void calcolaDanni() {
-		
+	public boolean isPietraDominante(Pietra pietra2, Equilibrio eq) {
+		Elementi elemento_dom = eq.verificaElementoDominante(pietra2.element, this.element);
+		if(this.element.equals(elemento_dom)) {
+			return true;
+		}else {
+			return false;
+		}
 	}
+	
+	public int getDannoPietra(Pietra pietra2, Equilibrio eq) {
+		return eq.getDanno(element, pietra2.element);
+	}
+	
+	
 	
 
 }
