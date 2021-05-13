@@ -148,10 +148,10 @@ public class Partita {
         finePartita(giocatore_sconfitto);
 	}
 	
-	public void finePartita(Giocatore g){
-		OutputStringhe.stampaSconfitto( g.getNome_giocatore());
+	public void finePartita(Giocatore giocatore_sconfitto){
+		OutputStringhe.stampaSconfitto( giocatore_sconfitto.getNome_giocatore());
 		String giocatore_vincente = giocatore_B.getNome_giocatore();
-		if(g.equals(giocatore_A)) {
+		if(!giocatore_sconfitto.equals(giocatore_A)) {
 			giocatore_vincente = giocatore_A.getNome_giocatore();
 		}
 		OutputStringhe.stampaVincitore(giocatore_vincente);
