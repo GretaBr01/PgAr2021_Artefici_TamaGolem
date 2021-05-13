@@ -2,23 +2,16 @@ package tamagolem;
 
 import java.util.ArrayList;
 
-/*
-Questa classe rappresenta un menu testuale generico a piu' voci
-Si suppone che la voce per uscire sia sempre associata alla scelta 0 
-e sia presentata in fondo al menu
+import it.unibs.fp.mylib.InputDati;
 
-*/
-public class MyMenu
-{
+
+public class MyMenu {
   final private static String CORNICE = "--------------------------------";
-  final private static String VOCE_USCITA = "0\tEsci";
-  final private static String RICHIESTA_INSERIMENTO = "Digita il numero dell'opzione desiderata > ";
 
   private String titolo;
   private String [] voci;
 
 
-	
   public MyMenu (String titolo, String [] voci){
 		this.titolo = titolo;
 		this.voci = voci;
@@ -27,23 +20,28 @@ public class MyMenu
   /**
    * @return scelta inserita dall'utente
    */
-  public int scegli (){
-	  return InputDati.leggiIntero(RICHIESTA_INSERIMENTO, 0, voci.length);	 
+  public int scegli (String richiesta_inserimento) {
+	return InputDati.leggiIntero(richiesta_inserimento, 0, voci.length);	 
   }
 		
   /**
-   * stampa del menu
+   * stampa un menu testuale generico a piu' voci. Si suppone che la voce per uscire sia sempre associata alla scelta 0 
+   * e sia presentata in fondo al menu
    */
-  public void stampaMenu (){
+  public void stampaMenu (String voce_aggiuntiva){
 		System.out.println(CORNICE);
 		System.out.println(titolo);
 		System.out.println(CORNICE);
 	    for (int i=0; i<voci.length; i++){
 		  System.out.println( (i+1) + "\t" + voci[i]);
 		}
-	    System.out.println();
-		System.out.println(VOCE_USCITA);
-	    System.out.println();
+	    
+	    if(!voce_aggiuntiva.isEmpty()) {
+		    System.out.println();
+			System.out.println("0\t"+voce_aggiuntiva);
+		    System.out.println();
+	    }
+
   }
 		
 }

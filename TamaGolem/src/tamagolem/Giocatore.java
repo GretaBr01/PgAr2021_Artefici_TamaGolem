@@ -22,10 +22,17 @@ public class Giocatore {
 		return nome_giocatore;
 	}
 	
+	/**
+	 * @return numero di TamaGolem rimasti al giocatore
+	 */
 	public int getNumero_tamagolem_giocatore() {
 		return numero_tamagolem_giocatore;
 	}
 
+	/**
+	 * settaggio numero max di TamaGolem per giocatore
+	 * @param num numero dei TamaGolem che il Giocatore puo' evocare
+	 */
 	public void setNumero_tamagolem_giocatore(int num) {
 		this.numero_tamagolem_giocatore = num;		
 	}
@@ -33,7 +40,6 @@ public class Giocatore {
 	/**
 	 * creazione di un TamaGolem del giocatore
 	 * @param _pietre vettore delle pietre selezionate dal giocatore
-	 * @param n_tg identificativo del TamaGolem creato
 	 */
 	public void evocazioneTamaGolem (Pietra[]_pietre) {
 			tamagolem = new TamaGolem();
@@ -41,14 +47,16 @@ public class Giocatore {
 			
 	}
 	
+	/**
+	 * quando il TamaGoem viene eliminato decremento numero di TamaGolem rimasti al giocatore
+	 */
 	public void morteTamagolem() {
 		this.numero_tamagolem_giocatore --;
 	}
 	
 	/**
-	 * dato identificativo del TamaGolem restituisce il corrispondente TamaGolem
-	 * @param id identificativo del TamaGolem
-	 * @return oggetto TamaGolem se trovato, altrimenti null
+	 * 
+	 * @return TamaGolem del Giocatore
 	 */
 	public TamaGolem getTamaGolem() {
 		return this.tamagolem;
@@ -77,5 +85,18 @@ public class Giocatore {
 			return false;
 		return true;
 	}
-
+	
+	/**
+	 * verifica che i due nomi dei giocatori siano diversi
+	 * @param g giocatore con cui confrontare il nome
+	 * @return true se i nomi sono diversi, false su nomi uguali
+	 */
+	public boolean nomeValido(Giocatore g) {
+		if(this.nome_giocatore.equals(g.nome_giocatore)) {
+			OutputStringhe.erroreNome();			
+			return false;
+		}else {
+			return true;
+		}
+	}
 }

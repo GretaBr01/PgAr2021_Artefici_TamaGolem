@@ -17,15 +17,10 @@ public class Main {
 				partita1.calcolaVariabili();
 				partita1.definisciScorta();			
 				
-				
-				
-				
 				partita1.avviaPartita();
 				
 			}
 			
-		//scelta difficolta partita
-		//avviaPartita(difficolta)
 		}while(InputDati.yesOrNo("vuoi fare una nuova partita?"));
 	}
 }
