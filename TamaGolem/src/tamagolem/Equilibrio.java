@@ -2,6 +2,7 @@ package tamagolem;
 
 import java.util.ArrayList;
 
+
 public class Equilibrio {
 	private static final int DANNO_MAX = 100;
 	private static final int DANNO_MINIMO = 1;
@@ -43,23 +44,7 @@ public class Equilibrio {
 			}
 		}		
 	}
-	
-	/*public ArrayList<Integer> verificaDominante (Pietra pietra_tg1, Pietra pietra_tg2) {
-		ArrayList<Integer> tgw_danno = new ArrayList<Integer>();
-		int elemento_pietra_tg1 = pietra_tg1.getElement().valore - 1;
-		int elemento_pietra_tg2 = pietra_tg2.getElement().valore -1 ;
-		
-		if(matrice_grafo[elemento_pietra_tg1][elemento_pietra_tg2] > 0) {
-			tgw_danno.add(1);
-			tgw_danno.add(matrice_grafo[elemento_pietra_tg1][elemento_pietra_tg2]);
-		}
-		else {
-			tgw_danno.add(2);
-			tgw_danno.add(matrice_grafo[elemento_pietra_tg2][elemento_pietra_tg1]);
-		}
-		
-		return tgw_danno;
-	}*/
+
 	
 	public Elementi verificaElementoDominante (Elementi elemento_tg1, Elementi elemento_tg2) {
 		int indice_elemento_tg1 = elemento_tg1.ordinal();
@@ -77,7 +62,38 @@ public class Equilibrio {
 		int danno = matrice_grafo[indice_elemento_dominante][indice_elemento_recessivo];
 		return danno;
 	}
-	
+
+	public int[][] getMatrice_grafo() {
+		return matrice_grafo;
+	}
+
+	public Elementi[] getNodi() {
+		return nodi;
+	}
+
+	public void stampaEquilibrio() {
+		String titolo="TABELLA EQUILIBRIO";
+		String [] intestazione= {"SCONTRO", "VINCITORE", "DANNO ARRECATO"};
+		
+		OutputStringhe.stampaTitoloTabella(titolo);
+		OutputStringhe.stampaIntestazioneTabella(intestazione);
+		String riga_tabella[]= new String[intestazione.length];
+		
+		for(int i=1; i<nodi.length; i++ ) {
+			for(int j=0; j<i; j++) {				
+				if(matrice_grafo[i][j]>0) {
+					riga_tabella[0]=nodi[i].name()+" vs "+ nodi[j].name();
+					riga_tabella[1]=nodi[i].name();
+					riga_tabella[2]=""+matrice_grafo[i][j];
+				}else {
+					riga_tabella[0]=nodi[i].name()+" vs "+ nodi[j].name();
+					riga_tabella[1]=nodi[j].name();
+					riga_tabella[2]=""+matrice_grafo[j][i];
+				}
+				OutputStringhe.stampaRigaTabella(riga_tabella);
+			}
+		}
+	}
 	
 	
 }
