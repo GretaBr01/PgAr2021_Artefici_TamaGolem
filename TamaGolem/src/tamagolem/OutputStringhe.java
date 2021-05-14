@@ -23,8 +23,9 @@ public class OutputStringhe {
 							"Lo scontro di due pietre con stesso elemento non comporterà alcun danno ai TamaGolem in gioco.",
 							"Atti di scorrettezza come copiare il set del proprio avversario verranno puniti con l'eliminazione del proprio TamaGolem."
 									+ "\n\t\tSe invece già nella prima battaglia dela partita i giocatori scelgono lo stesso set entrambi i TamaGolem verranno eliminati"};
-
-		System.out.println(centrata("\n\nBENVENUTI NELLA TAMARENA", LARGHEZZA_TABELLA));
+		System.out.println();
+		System.out.println();
+		System.out.println(centrata("BENVENUTI NELLA TAMARENA", LARGHEZZA_TABELLA));
 		System.out.println(creaCornice(LARGHEZZA_TABELLA, CORNICE_TITOLO));
 		System.out.println();
 		timeOut(4);

@@ -52,8 +52,9 @@ public class Equilibrio {
 
 	
 	public Elementi verificaElementoDominante (Elementi elemento_tg1, Elementi elemento_tg2) {
-		int indice_elemento_tg1 = elemento_tg1.ordinal();
-		int indice_elemento_tg2 = elemento_tg2.ordinal() ;
+		int indice_elemento_tg1 = getIndiceElementoEquilibrio(elemento_tg1);
+		int indice_elemento_tg2 = getIndiceElementoEquilibrio(elemento_tg2);
+		
 		if(matrice_grafo[indice_elemento_tg1][indice_elemento_tg2] > 0) {
 			return elemento_tg1;
 		} else {
@@ -62,12 +63,22 @@ public class Equilibrio {
 	}
 	
 	public int getDanno (Elementi elemento_dominante, Elementi elemento_recessivo) {
-		int indice_elemento_dominante = elemento_dominante.ordinal();
-		int indice_elemento_recessivo = elemento_recessivo.ordinal();
+		int indice_elemento_dominante = getIndiceElementoEquilibrio(elemento_dominante);
+		int indice_elemento_recessivo = getIndiceElementoEquilibrio(elemento_recessivo);
+		
 		int danno = matrice_grafo[indice_elemento_dominante][indice_elemento_recessivo];
 		return danno;
 	}
-
+	
+	public int getIndiceElementoEquilibrio(Elementi elemento) {
+		int i;
+		for(i=0; i<nodi.length; i++) {
+			if(elemento.equals(nodi[i])) {
+				return i;
+			}
+		}
+		return -1;
+	}
 	public int[][] getMatrice_grafo() {
 		return matrice_grafo;
 	}
