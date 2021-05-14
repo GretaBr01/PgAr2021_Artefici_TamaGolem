@@ -2,6 +2,7 @@ package tamagolem;
 
 import java.util.concurrent.TimeUnit;
 
+//classe per l'output delle stringhe delle interazioni avvenute in partita
 
 public class OutputStringhe { 	
 
@@ -15,6 +16,9 @@ public class OutputStringhe {
 	private final static String ACAPO = "\n";
 	
 
+	/**
+	 * stampa le regole del gioco
+	 */
 	public final static void stampaRegoleGioco() {
 		System.out.println(centrata("BENVENUTI NELLA TAMARENA", LARGHEZZA_TABELLA));
 		System.out.println(creaCornice(LARGHEZZA_TABELLA, CORNICE_TITOLO));
@@ -26,13 +30,21 @@ public class OutputStringhe {
 		System.out.println("1.\tSe i due TamaGolem schierati hanno lo stesso set di pietre la battaglia finirà con un pareggio e verranno eliminati, i due giocatori schierano nuovi TamaGolem");
 	}
 	
-	
+	/**
+	 * genera 30 spaziature sulla console
+	 */
 	public final static void clearConsole(){
 	    for (int i = 0; i<30; i++){
 	        System.out.print('\n');
 	     }
 	}	
 
+	/**
+	 * la stringa viene centrata all'interno della console
+	 * @param s stringa da stampare
+	 * @param larghezza console 
+	 * @return stringa centrata
+	 */
 	public static String centrata (String s, int larghezza){
 		StringBuffer res = new StringBuffer(larghezza);
 		if (larghezza <= s.length()) {
@@ -51,6 +63,12 @@ public class OutputStringhe {
 	 	return res.toString();
 	}
 	
+	/**
+	 * creazione della cornice la cui larghezza viene definita dall'intero passato come parametro
+	 * @param larghezza della cornice
+	 * @param cornice
+	 * @return cornice
+	 */
 	public static String creaCornice(int larghezza, String cornice) {
 		StringBuffer res = new StringBuffer();
 		for(int i=0; i<larghezza; i++) {
@@ -59,6 +77,10 @@ public class OutputStringhe {
 		return res.toString();
 	}
 	
+	/**
+	 * stampa il titolo della tabella passato come argomento
+	 * @param titolo
+	 */
 	public static void stampaTitoloTabella(String titolo) {
 		 StringBuffer res = new StringBuffer();
 		 
@@ -69,16 +91,30 @@ public class OutputStringhe {
 		 System.out.println(res.toString());
 	}
 	
+	/**
+	 * stampa intestazione della tabella
+	 * @param strings array che contiene i nomi delle colonne della tabella
+	 */
 	public static void stampaIntestazioneTabella(String ... strings) {
 		System.out.println(creaRigaTabella(LARGHEZZA_TABELLA, strings));
 		System.out.println(creaCornice(LARGHEZZA_TABELLA, CORNICE_TITOLO));
 	}
 	
+	/**
+	 * stampa una riga della tabella con il contenuto dell'array passato come argomento
+	 * @param strings array che contiene le informazione da stampare nella riga della tabella
+	 */
 	public static void stampaRigaTabella(String ...strings) {
 		System.out.println(creaRigaTabella(LARGHEZZA_TABELLA, strings));
 		System.out.println(creaCornice(LARGHEZZA_TABELLA, CORNICE_RIGA));
 	}
 	
+	/**
+	 * delimitazione della riga della tabella la cui larghezza è definita dall'intero passato come argomento
+	 * @param larghezza
+	 * @param strings
+	 * @return riga della tabella
+	 */
 	public static String creaRigaTabella(int larghezza, String ...strings) {
 		int num_colonne = strings.length;
 		int spazio_colonna = larghezza/num_colonne;
@@ -90,6 +126,12 @@ public class OutputStringhe {
 		return riga;
 	}
 	
+	/**
+	 * Stampa indicazioni durante l'evocazione del tamagolem
+	 * @param nome_giocatore nome del giocatore
+	 * @param tamagolem_rimanenti tamagolem rimanenti del giocatore
+	 * @param numero_pietre numero di pietre consentite per l'evocazione del tamagolem 
+	 */ 
 	public static void faseEvocazioneOutput(String nome_giocatore, int tamagolem_rimanenti, int numero_pietre) {
 		System.out.format("\n\nEVOCAZIONE TAMAGOLEM del giocatore %s \n\n", nome_giocatore);
 		System.out.format("\tTi rimangono %d TAMAGOLEM \n\n", tamagolem_rimanenti);
@@ -97,18 +139,32 @@ public class OutputStringhe {
 		System.out.format("SCEGLI %d PIETTRE per evocare il tamagolem\n", numero_pietre);		
 	}
 	
+	/**
+	 * Stampa errore se i due giocatori inseriscono lo stesso nome
+	 */
 	public static void erroreNome() {
 		System.out.println("ERRORE: nome inserito gia' utilizzato, inserire un nuovo nome...");
 	}
 	
+	/**
+	 * stampa errore se non vi sono più pietre di un determinato elemento disponibili all'interno della scorta pietre
+	 */
 	public static void errorePietreNonDIsponibili() {
 		System.out.println("Attenzione, non ci sono più pietre disponibili dell'elemento selezionato");
 	}
 	
+	/**
+	 * stampa evocazione avvenuta con successo
+	 * @param nome_giocatore
+	 */
 	public static void evocazioneCompletata(String nome_giocatore) {
 		System.out.format("evocazione %s completata\n\n", nome_giocatore);
 	}
 	
+	/**
+	 * timer che genera un delay la cui durata è determinata dell'interno passato come argomento
+	 * @param sec intero che indica la durata in secondi del delay che si vuole generare
+	 */
 	public static void timeOut(int sec) {
 		try {
 			TimeUnit.SECONDS.sleep(sec);
@@ -118,6 +174,14 @@ public class OutputStringhe {
 		}
 	}
 	
+	/**
+	 * stampa il danno causato da un tamagolem durante uno scontro
+	 * @param turno numero del turno in atto 
+	 * @param elemento_vittoria elemento che infligge danni 
+	 * @param elemento_sconfitta elemento che subisce danni
+	 * @param danno danno inflitto
+	 * @param giocatore_sconfitto giocatore a cui appartiene il tamagolem che subisce danni 
+	 */
 	public static void stampaDanno (int turno,String elemento_vittoria, String elemento_sconfitta, int danno, String giocatore_sconfitto){
 		timeOut(2);
 		System.out.print("TURNO "+turno+": ");
@@ -130,6 +194,11 @@ public class OutputStringhe {
 		System.out.println();
 	}
 	
+	/**
+	 * stampa la sconfitta di un tamagolem quando questu'ultimo termina i punti vita disponibili
+	 * @param turno
+	 * @param nome_giocatore
+	 */
 	public static void stampaTamagolemSconfitto(int turno, String nome_giocatore) {
 		timeOut(2);
 		System.out.print("TURNO "+turno+": ");
@@ -138,19 +207,31 @@ public class OutputStringhe {
 		pausaSistema();
 	}
 	
+	
 	public static void pausaSistema() {
 		InputDati.leggiStringa("premi un tasto per continuare...");
 	}
 	
+	/**
+	 * stampa il nome del giocatore che perde la partita
+	 * @param nome_giocatore nome del giocatore
+	 */
 	public static void stampaSconfitto(String nome_giocatore) {
 		System.out.format("\n\n\til giocatore %s è stato sconfitto\n\n", nome_giocatore);
 	}
 	
+	/**
+	 * stampa il nome del giocatore che vince la partita
+	 * @param nome_giocatore
+	 */
 	public static void stampaVincitore(String nome_giocatore) {
 		System.out.format("\n\t Ha VINTO il giocatore %s\n\n", nome_giocatore);
 		pausaSistema();
 	}
 	
+	/**
+	 * stampa indicazione dell'avvio della partita
+	 */
 	public static void inizioPartita() {
 		String cornice=creaCornice(LARGHEZZA_TABELLA, CORNICE_TITOLO);
 		System.out.println(cornice);
@@ -158,10 +239,17 @@ public class OutputStringhe {
 		System.out.println(cornice);
 	}
 	
+	/**
+	 * stampa il numero della battaglia in atto
+	 * @param num_battaglia
+	 */
 	public static void stampaNumeroBattaglia(int num_battaglia) {
 		System.out.format("INIZIO BATTAGLIA NUM. %d\n\n", num_battaglia);
 	}
 	
+	/**
+	 * stampa indicazione battaglia terminata con un pareggio
+	 */
 	public static void stampaBattagliaPareggio () {
 		timeOut(2);
 		System.out.println("I due TamaGolem hanno la stessa sequenza di pietre, la battaglia termina con un PAREGGIO!!");
@@ -169,6 +257,9 @@ public class OutputStringhe {
 		pausaSistema();
 	}
 	
+	/**
+	 * stampa partita terminata con un pareggio
+	 */
 	public static void stampaPartitaPareggio () {
 		System.out.println();
 		System.out.println("\tLa partita e' terminata con un PAREGGIO");

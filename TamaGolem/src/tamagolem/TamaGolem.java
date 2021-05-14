@@ -6,7 +6,7 @@ import java.util.Queue;
 
 public class TamaGolem {
 	
-	private static final int HP_MAX = 100;
+	private static final int HP_MAX = 100;//punti vita massimi  
 	
 	private int health_points;
 	private Queue<Pietra> caricatore = new LinkedList<Pietra>();
@@ -29,7 +29,7 @@ public class TamaGolem {
 	
 	
 	/**
-	 * when trowing a stone it automatically put it on the top of the queue
+	 * quanto viene lanciata una pietra, essa viene riposta automaticamente all'interno del caricatore (queue)
 	 */
 	public Pietra trowPietra() {
 		 Pietra pietra  = getPietra();
@@ -46,15 +46,24 @@ public class TamaGolem {
 		caricatore.add(pietra);
 	}
 	
-
+	/**
+	 * il danno passato come argomento viene sottratto ai punti vita del tamagolem
+	 * @param danno
+	 */
 	public void infliggiDanno(int danno) {
 		this.health_points = this.health_points - danno;
 	}
 	
+	/**
+	 * @return ritorna i punti vita del tamagolem
+	 */
 	public int getHealthPoints() {
 		return health_points;
 	}
 
+	/**
+	 * @return true se i punti vita del tamagolem sono <= 0, false altrimenti
+	 */
 	public boolean isSconfitto() {
 		if(this.health_points<=0)
 			return true;

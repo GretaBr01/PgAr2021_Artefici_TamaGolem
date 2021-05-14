@@ -2,6 +2,8 @@ package tamagolem;
 
 import java.util.*;
 
+//classe estrattore numeri casuali
+
 public class NumeriCasuali {
 	
 	private static Random estrattore = new Random();	

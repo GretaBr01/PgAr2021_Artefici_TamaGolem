@@ -4,7 +4,6 @@ public class Pietra {
 	private Elementi element;
 	
 	/**
-	 * 
 	 * @return Elemento della pietra
 	 */
 	public Elementi getElement() {
@@ -12,12 +11,13 @@ public class Pietra {
 	}
 
 	/**
-	 * settaggio elemento della pietra
+	 * istanziamento elemento della pietra
 	 * @param element 
 	 */
 	public void setElement(Elementi element) {
 		this.element = element;
 	}
+	
 	/**
 	 * stabilire se la pietra è dominante o no
 	 * @param pietra2 pietra con cui confrontare

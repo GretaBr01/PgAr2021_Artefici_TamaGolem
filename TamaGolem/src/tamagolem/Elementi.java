@@ -100,6 +100,11 @@ public enum Elementi {
 		return nodes;
 	}
 	
+	/**
+	 * definisce casualmente gli elementi che andranno a interagire nell'equilibrio
+	 * @param numero_elementi_partita
+	 * @return vettore contentente gli elementi estratti
+	 */
 	public static Elementi[] estraiElementi(int numero_elementi_partita) {
 		//Set<Elementi> insieme= new HashSet<Elementi>();
 		Elementi nodes[]= new Elementi[numero_elementi_partita];

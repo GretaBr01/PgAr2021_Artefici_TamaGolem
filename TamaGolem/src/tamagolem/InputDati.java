@@ -1,5 +1,7 @@
 package tamagolem;
 import java.util.*;
+
+//classe contente i metodi per l'acquisizione di dati dall'utente 
 public class InputDati 
 {
 	  private static Scanner lettore = creaScanner();

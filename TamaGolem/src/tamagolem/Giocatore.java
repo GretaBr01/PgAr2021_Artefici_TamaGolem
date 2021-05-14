@@ -48,14 +48,13 @@ public class Giocatore {
 	}
 	
 	/**
-	 * quando il TamaGoem viene eliminato decremento numero di TamaGolem rimasti al giocatore
+	 * Decremento del numero di TamaGolem del giocatore nel caso in cui venga sconfitto in battaglia
 	 */
 	public void morteTamagolem() {
 		this.numero_tamagolem_giocatore --;
 	}
 	
-	/**
-	 * 
+	/** 
 	 * @return TamaGolem del Giocatore
 	 */
 	public TamaGolem getTamaGolem() {
