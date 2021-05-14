@@ -4,9 +4,8 @@ public class Main {
 	
 	public static void main(String[] args) {
 		Partita partita1;
-		
+		OutputStringhe.stampaRegoleGioco();
 		do {
-			//utente schiaccia invio per iniziare la partita
 			partita1=new Partita();
 			
 			if(partita1.setDifficolta()) {

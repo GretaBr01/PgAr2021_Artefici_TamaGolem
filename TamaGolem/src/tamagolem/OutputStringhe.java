@@ -16,14 +16,31 @@ public class OutputStringhe {
 	
 
 	public final static void stampaRegoleGioco() {
-		System.out.println(centrata("BENVENUTI NELLA TAMARENA", LARGHEZZA_TABELLA));
+		String regole[]= {	"La difficolta' della partita sara' scelta dai giocatori.",
+							"In base alla difficolta' scelta cambiano i parametri di gioco come il numero di TamaGolem per giocatore e il numero di pietre che compone un set",
+							"I TamaGolem all'inizio della loro esistenza avranno 100 punti vita!",
+							"L'equilibrio degli elementi verra' generato casualmente all'inizio della partita e i giocatori potranno visualizzarlo solo alla fine di essa.",
+							"Lo scontro di due pietre con stesso elemento non comporterà alcun danno ai TamaGolem in gioco.",
+							"Atti di scorrettezza come copiare il set del proprio avversario verranno puniti con l'eliminazione del proprio TamaGolem."
+									+ "\n\t\tSe invece già nella prima battaglia dela partita i giocatori scelgono lo stesso set entrambi i TamaGolem verranno eliminati"};
+
+		System.out.println(centrata("\n\nBENVENUTI NELLA TAMARENA", LARGHEZZA_TABELLA));
 		System.out.println(creaCornice(LARGHEZZA_TABELLA, CORNICE_TITOLO));
 		System.out.println();
+		timeOut(4);
 		System.out.println("Prima di iniziare il gruppo Artefici si inchina dinanzi ai capi del progetto e al flauto magico di Robb!");
 		System.out.println();
-		System.out.println("\tECCO LE REGOLE DEL GIOCO:");
-		
-		System.out.println("1.\tSe i due TamaGolem schierati hanno lo stesso set di pietre la battaglia finirà con un pareggio e verranno eliminati, i due giocatori schierano nuovi TamaGolem");
+		System.out.println("\tECCO LE REGOLE DEL GIOCO:");	
+		System.out.println();
+		timeOut(3);
+		for(int i=0; i<regole.length; i++) {
+			System.out.format("%d\t%s", i+1, regole[i]);
+			System.out.println();
+			timeOut(2);
+		}
+		System.out.println();
+		pausaSistema();
+		System.out.println();
 	}
 	
 	
@@ -139,7 +156,7 @@ public class OutputStringhe {
 	}
 	
 	public static void pausaSistema() {
-		InputDati.leggiStringa("premi un tasto per continuare...");
+		InputDati.leggiStringaVuota("premi un tasto per continuare...");
 	}
 	
 	public static void stampaSconfitto(String nome_giocatore) {
