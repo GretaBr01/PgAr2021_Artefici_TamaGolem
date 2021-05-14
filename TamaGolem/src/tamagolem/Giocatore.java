@@ -12,7 +12,7 @@ public class Giocatore {
 	 * @param nome del giocatore che si crea
 	 */
 	public Giocatore(String nome) {
-		nome_giocatore = nome;		
+		nome_giocatore = nome.toUpperCase();		
 	}
 	
 	/**

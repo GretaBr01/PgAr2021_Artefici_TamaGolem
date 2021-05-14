@@ -125,7 +125,7 @@ public class Partita {
 	}
 	
 	/**
-	 * 
+	 * gestione delle varie fasi della partita, dall'evocazione fino alla dichiarazione di un vincitore.
 	 */
 	public void avviaPartita() {
 		Giocatore giocatore_sconfitto = null;		

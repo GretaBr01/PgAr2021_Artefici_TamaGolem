@@ -5,8 +5,6 @@ import java.util.concurrent.TimeUnit;
 //classe per l'output delle stringhe delle interazioni avvenute in partita
 
 public class OutputStringhe { 	
-
-	//Possibili nomi: Questions, Phrases,
 	
 	private static final int LARGHEZZA_TABELLA = 150;
 	private static final String CORNICE_RIGA = " ";
@@ -33,8 +31,6 @@ public class OutputStringhe {
 		System.out.println(creaCornice(LARGHEZZA_TABELLA, CORNICE_TITOLO));
 		System.out.println();
 		timeOut(4);
-		System.out.println("Prima di iniziare il gruppo Artefici si inchina dinanzi ai capi del progetto e al flauto magico di Robb!");
-		System.out.println();
 		System.out.println("\tECCO LE REGOLE DEL GIOCO:");	
 		System.out.println();
 		timeOut(3);

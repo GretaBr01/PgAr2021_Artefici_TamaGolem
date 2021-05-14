@@ -60,8 +60,9 @@ public class Equilibrio {
 	 * @return elemento dominante
 	 */
 	public Elementi verificaElementoDominante (Elementi elemento_tg1, Elementi elemento_tg2) {
-		int indice_elemento_tg1 = elemento_tg1.ordinal();
-		int indice_elemento_tg2 = elemento_tg2.ordinal() ;
+		int indice_elemento_tg1 = getIndiceElementoEquilibrio(elemento_tg1);
+		int indice_elemento_tg2 = getIndiceElementoEquilibrio(elemento_tg2);
+		
 		if(matrice_grafo[indice_elemento_tg1][indice_elemento_tg2] > 0) {//se il danno estratto dalla matrice è positivo allora l'elemento dominante è il primo elemento passato come argomento
 			return elemento_tg1;
 		} else {//altrimenti è il secondo elemento passato come argomento
@@ -77,12 +78,27 @@ public class Equilibrio {
 	 * @return danno inflitto/subito dal primo elemento rispetto il secondo
 	 */
 	public int getDanno (Elementi elemento_dominante, Elementi elemento_recessivo) {
-		int indice_elemento_dominante = elemento_dominante.ordinal();
-		int indice_elemento_recessivo = elemento_recessivo.ordinal();
+		int indice_elemento_dominante = getIndiceElementoEquilibrio(elemento_dominante);
+		int indice_elemento_recessivo = getIndiceElementoEquilibrio(elemento_recessivo);
+	
 		int danno = matrice_grafo[indice_elemento_dominante][indice_elemento_recessivo];
 		return danno;
 	}
 	
+	/**
+	 * determina la posizione dell'elemento passato come argomento all'interno dell'array contenente gli elementi della partita
+	 * @param elemento
+	 * @return indice elemento se presente tra gli elementi della partta, -1 se non trovato
+	 */
+	public int getIndiceElementoEquilibrio(Elementi elemento) {
+		int i;
+		for(i=0; i<nodi.length; i++) {
+			if(elemento.equals(nodi[i])) {
+				return i;
+			}
+		}
+		return -1;
+	}
 
 	/**
 	 * @return la matrice che rappresenta l'equilibrio della partita

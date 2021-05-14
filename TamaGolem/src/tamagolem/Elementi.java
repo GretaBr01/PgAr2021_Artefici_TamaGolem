@@ -1,20 +1,16 @@
 package tamagolem;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
-
 public enum Elementi {
 	FUOCO (1),
-	ACQUA (2),
-	MERDA (3),
-	ALESSANDROCONTI (4),
+	ACQUA_SPORCA (2),
+	FLAUTO_DI_ROBB (3),
+	GRAN_CRISPY_MCBACON (4),
 	CLAVE (5),
 	CRISTIANESIMO(6),
-	ARIA(7),
-	TERRA(8),
-	LEGNO(9),
-	FULMINI(10);
+	CETACEO_MULTIFORME(7),
+	ELIO_E_LE_STORIE_TESISSIME(8),
+	ANIMA_DI_LORD_LANGE(9),
+	FULMINI_AMICHEVOLI(10);
 
 	private int valore;
 	
@@ -108,7 +104,6 @@ public enum Elementi {
 	 * @param numero_elementi_partita
 	 * @return vettore contentente gli elementi estratti
 	 */
-
 	public static Elementi[] estraiElementi(int numero_elementi_partita) {
 		Elementi elementi_classe[]= Elementi.values();
 		int num_elementi_classe = elementi_classe.length;
@@ -119,14 +114,13 @@ public enum Elementi {
 		Elementi elemento_estratto;
 		
 		for(int i=0; i<numero_elementi_partita; i++) {
-			indice_elemento_estratto = NumeriCasuali.estraiIntero(0, num_elementi_classe-1);
-			elemento_estratto = elementi_classe[indice_elemento_estratto];
+			indice_elemento_estratto = NumeriCasuali.estraiIntero(0, num_elementi_classe-1);	//viene estratto un indice fra 0 e il numero degli elementi non ancora estratti -1
+			elemento_estratto = elementi_classe[indice_elemento_estratto];	//viene preso l'elemento corrispondente all'indice estratto dall'array degli elementi della classe
 			
-			elementi_partita[i] = elemento_estratto;
+			elementi_partita[i] = elemento_estratto;	//inserisco l'elemento estratto nell'array degli elementi che verranno utilizzati nell'equilibrio			
+			elementi_classe[indice_elemento_estratto] = elementi_classe[num_elementi_classe-1];	//sposto l'elemento estratto in "ultima" posizione
 			
-			elementi_classe[indice_elemento_estratto] = elementi_classe[num_elementi_classe-1];
-			//elementi_classe[num_elementi_classe-1] = elemento_estratto;
-			num_elementi_classe--;
+			num_elementi_classe--;	//decremento il numero degli elementi estraibili
 			
 		}
 		return elementi_partita;

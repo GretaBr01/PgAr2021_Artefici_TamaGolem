@@ -12,7 +12,6 @@ public class Main {
 			//utente schiaccia invio per iniziare la partita
 			partita1=new Partita();//creazione di una partita
 
-
 			if(partita1.setDifficolta()) {//definizione del livello difficolta' della partita
 				
 				partita1.setElementi_partita();//definizione degli elementi che andranno a definire l'equilibrio della partita

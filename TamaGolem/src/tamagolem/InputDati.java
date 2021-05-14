@@ -2,6 +2,8 @@ package tamagolem;
 import java.util.*;
 
 //classe contente i metodi per l'acquisizione di dati dall'utente 
+//classe importata dalla libreria di Serina
+
 public class InputDati 
 {
 	  private static Scanner lettore = creaScanner();
@@ -92,6 +94,7 @@ public class InputDati
 				  String daButtare = lettore.next();
 			  }
 		  } while (!finito);
+		  lettore.nextLine();
 		  return valoreLetto;
 	  }
 

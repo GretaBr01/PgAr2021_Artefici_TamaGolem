@@ -10,23 +10,25 @@ public class TamaGolem {
 	
 	private int health_points;
 	private Queue<Pietra> caricatore = new LinkedList<Pietra>();
-	//private int numero_pietre_disponibili;
-	
-	public void listaElementi() {
-		
-	}
-	
+
+	/**
+	 * impostazione del TamaGolem creato
+	 * @param _pietre
+	 */
 	public void setTamaGolem(Pietra[]_pietre) {
 		setPietre(_pietre);
 		health_points = HP_MAX;
 	}
 	
+	/**
+	 * viene impostato il caricatore del TamaGolem con le pietre passatre come argomento
+	 * @param _pietre
+	 */
 	public void setPietre(Pietra[]_pietre) {
 		for(Pietra pietra: _pietre ) {
 			this.caricatore.add(pietra);
 		}
-	}
-	
+	}	
 	
 	/**
 	 * quanto viene lanciata una pietra, essa viene riposta automaticamente all'interno del caricatore (queue)
@@ -38,10 +40,18 @@ public class TamaGolem {
 		 return pietra;
 	}
 	
+	/**
+	 * 
+	 * @return pietra presente alla fine della Queue
+	 */
 	public Pietra getPietra() {
 		return caricatore.peek();
 	}
 	
+	/**
+	 * 
+	 * @param pietra reinserisce la pietra sparata alla cima della Queue
+	 */
 	public void ricaricaPietra(Pietra pietra) {
 		caricatore.add(pietra);
 	}
