@@ -24,25 +24,30 @@ public class Equilibrio {
 	public void generaEquilibrio() {
 		int somma;
 		int danno;
+
 		for(int i=0; i<nodi.length; i++) {
 			somma=0;
 			for(int j=0; j<nodi.length; j++) {
-				somma= somma+ matrice_grafo[i][j];
-				
+				somma= somma + matrice_grafo[i][j];
+					
 				if(i!=j && matrice_grafo[i][j]==0){					
 					if(j==nodi.length-1) {
 						danno=-somma;
-					}else if(somma>0) {
-						danno=-NumeriCasuali.estraiIntero(DANNO_MINIMO, DANNO_MAX);
-					}else {
-						danno=NumeriCasuali.estraiIntero(DANNO_MINIMO, DANNO_MAX);
+					}else if(somma >= DANNO_MINIMO && somma <= DANNO_MAX) {
+						danno=-NumeriCasuali.estraiIntero(DANNO_MINIMO, DANNO_MAX/2);
+					} else if (somma > DANNO_MAX) {
+						danno = - NumeriCasuali.estraiIntero(somma/2, DANNO_MAX);
+					}else if (somma <= 0 && somma > -DANNO_MAX){
+						danno = NumeriCasuali.estraiIntero(DANNO_MINIMO, DANNO_MAX/2);
+					} else {							
+						danno = NumeriCasuali.estraiIntero(somma/2, DANNO_MAX);
 					}
 					matrice_grafo[i][j]=danno;
 					matrice_grafo[j][i]=-danno;
 					somma=somma+danno;
 				}
 			}
-		}		
+		}	
 	}
 
 	

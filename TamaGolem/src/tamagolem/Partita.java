@@ -93,10 +93,10 @@ public class Partita {
 	 * tamaGolems
 	 */
 	public void definisciScorta() {
-		for(int valore_elemento  = 1; valore_elemento <= numero_elementi_partita; valore_elemento++) {
+		for(int i = 0; i < elementi_partita.length; i++) {
 			for(int cicli_x_elemento = 0; cicli_x_elemento < num_pietre_per_elemento; cicli_x_elemento++) {
 				Pietra pietra = new Pietra();
-				pietra.setElement(Elementi.getElementoDaValore(valore_elemento));
+				pietra.setElement(elementi_partita[i]);
 			    scorta.add(pietra);
 			}
 		}
@@ -135,26 +135,62 @@ public class Partita {
 			num_battaglia++;
 			OutputStringhe.stampaNumeroBattaglia(num_battaglia);
 			giocatore_sconfitto = battlePhase(giocatore_A.getTamaGolem(), giocatore_B.getTamaGolem());
-			giocatore_sconfitto.morteTamagolem();
-						
-			if (giocatore_A.equals(giocatore_sconfitto) && giocatore_A.getNumero_tamagolem_giocatore() > 0) {
+			
+			if(!Objects.isNull(giocatore_sconfitto)) {
+				giocatore_sconfitto.morteTamagolem();
+			}
+			
+			if (Objects.isNull(giocatore_sconfitto)) {		//in caso che lo scontro finisca in pareggio evocazione del giocatore interessato
+				OutputStringhe.stampaBattagliaPareggio();				
+				if(giocatore_A.getTamaGolem().getHealthPoints() < giocatore_B.getTamaGolem().getHealthPoints()) {
+					giocatore_B.morteTamagolem();
+					if(giocatore_B.getNumero_tamagolem_giocatore() > 0) {
+						evocationPhase(giocatore_B);
+					}					
+				} else if (giocatore_B.getTamaGolem().getHealthPoints() < giocatore_A.getTamaGolem().getHealthPoints()){
+					giocatore_A.morteTamagolem();
+					if( giocatore_A.getNumero_tamagolem_giocatore() > 0) {
+						evocationPhase(giocatore_A);
+					}
+				} else {
+					giocatore_A.morteTamagolem();
+					giocatore_B.morteTamagolem();
+					if (giocatore_A.getNumero_tamagolem_giocatore() > 0 && giocatore_B.getNumero_tamagolem_giocatore() > 0) {
+						evocationPhase(giocatore_A);
+						evocationPhase(giocatore_B);
+					}
+				}				
+			}else if (giocatore_A.equals(giocatore_sconfitto) && giocatore_A.getNumero_tamagolem_giocatore() > 0) {
 				evocationPhase(giocatore_A);
-			}else if(giocatore_B.getNumero_tamagolem_giocatore() > 0) {
+			}else if(giocatore_B.equals(giocatore_sconfitto) && giocatore_B.getNumero_tamagolem_giocatore() > 0) {
 				evocationPhase(giocatore_B);
 			}
 			
 		}while((giocatore_A.getNumero_tamagolem_giocatore() > 0 && giocatore_B.getNumero_tamagolem_giocatore() > 0));
 		
+		if(Objects.isNull(giocatore_sconfitto)) {		//in caso che l'ultimo scontro finisca in pareggio dichiaro un vincitore
+			if(giocatore_A.getNumero_tamagolem_giocatore() == 0 && giocatore_B.getNumero_tamagolem_giocatore() > 0 ) {
+				giocatore_sconfitto = giocatore_A;
+			} else if (giocatore_B.getNumero_tamagolem_giocatore() == 0 && giocatore_A.getNumero_tamagolem_giocatore() > 0) {
+				giocatore_sconfitto = giocatore_B;
+			} 
+		}
+		
         finePartita(giocatore_sconfitto);
 	}
 	
 	public void finePartita(Giocatore giocatore_sconfitto){
-		OutputStringhe.stampaSconfitto( giocatore_sconfitto.getNome_giocatore());
-		String giocatore_vincente = giocatore_B.getNome_giocatore();
-		if(!giocatore_sconfitto.equals(giocatore_A)) {
-			giocatore_vincente = giocatore_A.getNome_giocatore();
+		if(!Objects.isNull(giocatore_sconfitto)) {
+			OutputStringhe.stampaSconfitto( giocatore_sconfitto.getNome_giocatore());
+			String giocatore_vincente = giocatore_B.getNome_giocatore();
+			if(!giocatore_sconfitto.equals(giocatore_A)) {
+				giocatore_vincente = giocatore_A.getNome_giocatore();
+			}
+			OutputStringhe.stampaVincitore(giocatore_vincente);
+		} else {
+			OutputStringhe.stampaPartitaPareggio();
 		}
-		OutputStringhe.stampaVincitore(giocatore_vincente);
+		
         equilibrio_elementi.stampaEquilibrio();
 	}
 	
@@ -252,6 +288,7 @@ public class Partita {
 		String elemento_sconfitta;
 		String giocatore_sconfitta;
 		int turno=0;
+		int numero_danni_nulli = 0;
 		do {
 			turno++;
 			pietra_tg1 = tg1.trowPietra();
@@ -271,6 +308,10 @@ public class Partita {
 				giocatore_sconfitta = giocatore_A.getNome_giocatore();
 			}
 			
+			if(danno == 0) {
+				numero_danni_nulli++;
+			}
+			
 			giocatore_tg_abbattuto = verificaSconfitto(tg1, tg2);
 			
 			if(!Objects.isNull(giocatore_tg_abbattuto)) {
@@ -278,7 +319,8 @@ public class Partita {
 			}else {
 				OutputStringhe.stampaDanno(turno, elemento_vittoria, elemento_sconfitta, danno, giocatore_sconfitta);
 			}
-		}while(Objects.isNull(giocatore_tg_abbattuto));
+		}while(Objects.isNull(giocatore_tg_abbattuto) && !(numero_danni_nulli == num_pietre_tamagolem && numero_danni_nulli == turno) );
+		
 		
 		return giocatore_tg_abbattuto;
 	}

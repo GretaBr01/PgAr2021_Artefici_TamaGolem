@@ -2,6 +2,7 @@ package tamagolem;
 
 import java.util.concurrent.TimeUnit;
 
+
 public class OutputStringhe { 	
 
 	//Possibili nomi: Questions, Phrases,
@@ -13,16 +14,19 @@ public class OutputStringhe {
 	private final static String SPAZIO = " ";
 	private final static String ACAPO = "\n";
 	
+
+	public final static void stampaRegoleGioco() {
+		System.out.println(centrata("BENVENUTI NELLA TAMARENA", LARGHEZZA_TABELLA));
+		System.out.println(creaCornice(LARGHEZZA_TABELLA, CORNICE_TITOLO));
+		System.out.println();
+		System.out.println("Prima di iniziare il gruppo Artefici si inchina dinanzi ai capi del progetto e al flauto magico di Robb!");
+		System.out.println();
+		System.out.println("\tECCO LE REGOLE DEL GIOCO:");
+		
+		System.out.println("1.\tSe i due TamaGolem schierati hanno lo stesso set di pietre la battaglia finirà con un pareggio e verranno eliminati, i due giocatori schierano nuovi TamaGolem");
+	}
 	
 	
-	/*
-	 Questa classe rappresenta le frasi/menu che vengono stampate all'utente
-
-
-	COSE UTILI:
-		TimeUnit.SECONDS.sleep(1);		//aspettare per 1 secondo
-		thread.slepp(5000);
-	------------------------------------------------------------------------------------------------------------------------	*/
 	public final static void clearConsole(){
 	    for (int i = 0; i<30; i++){
 	        System.out.print('\n');
@@ -156,5 +160,19 @@ public class OutputStringhe {
 	
 	public static void stampaNumeroBattaglia(int num_battaglia) {
 		System.out.format("INIZIO BATTAGLIA NUM. %d\n\n", num_battaglia);
+	}
+	
+	public static void stampaBattagliaPareggio () {
+		timeOut(2);
+		System.out.println("I due TamaGolem hanno la stessa sequenza di pietre, la battaglia termina con un PAREGGIO!!");
+		timeOut(1);
+		pausaSistema();
+	}
+	
+	public static void stampaPartitaPareggio () {
+		System.out.println();
+		System.out.println("\tLa partita e' terminata con un PAREGGIO");
+		System.out.println();
+		pausaSistema();
 	}
 }

@@ -4,6 +4,7 @@ public class Main {
 	
 	public static void main(String[] args) {
 		Partita partita1;
+		
 		do {
 			//utente schiaccia invio per iniziare la partita
 			partita1=new Partita();
@@ -21,6 +22,6 @@ public class Main {
 				
 			}
 			
-		}while(InputDati.yesOrNo("vuoi fare una nuova partita?"));
+		}while(InputDati.yesOrNo("\n\n\nVuoi fare una nuova partita?"));
 	}
 }
