@@ -82,6 +82,7 @@ public class Equilibrio {
 		int danno = matrice_grafo[indice_elemento_dominante][indice_elemento_recessivo];
 		return danno;
 	}
+	
 
 	/**
 	 * @return la matrice che rappresenta l'equilibrio della partita
