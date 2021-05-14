@@ -86,20 +86,6 @@ public enum Elementi {
 	}
 	
 	/**
-	 * estazione casuale degli elementi che verranno utilizzati nella partita
-	 * @param numero_elementi_partita
-	 * @return vettore contenente gli elementi che si utilizzeranno nella partita
-	 */
-
-	public static Elementi[] getElementi(int numero_elementi_partita) {
-		Elementi nodes[]= new Elementi[numero_elementi_partita];
-		for(int i=0; i<numero_elementi_partita; i++) {
-			nodes[i]=getById(i);
-		}
-		return nodes;
-	}
-	
-	/**
 	 * definisce casualmente gli elementi che andranno a interagire nell'equilibrio
 	 * @param numero_elementi_partita
 	 * @return vettore contentente gli elementi estratti
