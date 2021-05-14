@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 
 public class MyMenu {
-  final private static String CORNICE = "--------------------------------";
+  final private static String CORNICE = "---------------------------------------";
 
   private String titolo;
   private String [] voci;
@@ -29,7 +29,7 @@ public class MyMenu {
    */
   public void stampaMenu (String voce_aggiuntiva){
 		System.out.println(CORNICE);
-		System.out.println(titolo);
+		System.out.println("\t"+titolo);
 		System.out.println(CORNICE);
 	    for (int i=0; i<voci.length; i++){
 		  System.out.println( (i+1) + "\t" + voci[i]);

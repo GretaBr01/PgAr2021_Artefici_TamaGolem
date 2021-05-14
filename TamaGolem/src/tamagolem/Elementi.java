@@ -90,8 +90,11 @@ public enum Elementi {
 	}
 	
 	/**
-	 * @return vettore contenente gli elementi della classe Enum Elementi
+	 * estazione casuale degli elementi che verranno utilizzati nella partita
+	 * @param numero_elementi_partita
+	 * @return vettore contenente gli elementi che si utilizzeranno nella partita
 	 */
+
 	public static Elementi[] getElementi(int numero_elementi_partita) {
 		Elementi nodes[]= new Elementi[numero_elementi_partita];
 		for(int i=0; i<numero_elementi_partita; i++) {
@@ -105,26 +108,29 @@ public enum Elementi {
 	 * @param numero_elementi_partita
 	 * @return vettore contentente gli elementi estratti
 	 */
+
 	public static Elementi[] estraiElementi(int numero_elementi_partita) {
-		//Set<Elementi> insieme= new HashSet<Elementi>();
-		Elementi nodes[]= new Elementi[numero_elementi_partita];
-		int valore_elemento;
-		boolean trovato;
-		int i=0;
-		while(i<numero_elementi_partita){
-			trovato=false;
-			valore_elemento=NumeriCasuali.estraiIntero(1, numero_elementi_partita);
-			for(int j=0; j<i; j++) {
-				if(nodes[j].getValore()==valore_elemento) {
-					trovato=true;
-				}
-			}
-			if(!trovato) {
-				nodes[i]=getElementoDaValore(valore_elemento);
-				i++;
-			}
+		Elementi elementi_classe[]= Elementi.values();
+		int num_elementi_classe = elementi_classe.length;
+		
+		Elementi elementi_partita[]= new Elementi[numero_elementi_partita];
+		
+		int indice_elemento_estratto;
+		Elementi elemento_estratto;
+		
+		for(int i=0; i<numero_elementi_partita; i++) {
+			indice_elemento_estratto = NumeriCasuali.estraiIntero(0, num_elementi_classe-1);
+			elemento_estratto = elementi_classe[indice_elemento_estratto];
+			
+			elementi_partita[i] = elemento_estratto;
+			
+			elementi_classe[indice_elemento_estratto] = elementi_classe[num_elementi_classe-1];
+			//elementi_classe[num_elementi_classe-1] = elemento_estratto;
+			num_elementi_classe--;
+			
 		}
-		return nodes;
+		return elementi_partita;
 	}
+
 	
 }

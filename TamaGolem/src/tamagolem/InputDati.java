@@ -28,6 +28,11 @@ public class InputDati
 		  return lettore.next();
 	  }
 	  
+	  public static String leggiStringaVuota(String messaggio){
+		  System.out.print(messaggio);
+		  return lettore.nextLine();
+	  }
+	  
 	  public static String leggiStringaNonVuota(String messaggio){
 		  boolean finito=false;
 		  String lettura = null;
